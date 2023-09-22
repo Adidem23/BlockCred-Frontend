@@ -1,0 +1,54 @@
+/* Hero section container */
+.hero {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70vh;
+    padding: 20px;
+    /* background: url(../Images/wave2.svg);
+    background-repeat: no-repeat;
+    background-size: cover; */
+    /* border: 3px solid red; */
+}
+
+/* Hero content */
+.hero-content {
+    text-align: center;
+}
+
+/* Heading */
+.hero-content h1 {
+    font-size: 4.5rem;
+    /* Adjust the font size as needed */
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* Paragraph */
+.newp {
+    font-size: 3.2rem;
+    /* Adjust the font size as needed */
+    font-weight: bold;
+    margin-top: 10px;
+    padding: 3px 68px;
+    color: #333;
+    /* Set the color as needed */
+}
+
+#butty {
+    margin-top: 25px;
+}
+
+#wave {
+    animation: waveAnimation 10s linear infinite;
+}
+
+@keyframes waveAnimation {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-100%);
+    }
+}

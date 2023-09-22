@@ -1,0 +1,218 @@
+.padding-global {
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+.container-large {
+    width: 100%;
+    max-width: 75rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.padding-section-large {
+    padding-top: 7rem;
+    padding-bottom: 7rem;
+}
+
+.header-ecosystem-content {
+    width: 100%;
+    max-width: 64rem;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+}
+
+.heading-style-h1 {
+    letter-spacing: .02rem;
+    font-size: 5.5rem;
+    font-weight: 700;
+    line-height: .95;
+}
+
+.padding-bottom {
+    padding-top: 0rem !important;
+    padding-right: 0rem !important;
+    padding-left: 0rem !important;
+}
+
+.button-center-wrapper {
+    width: 100%;
+    justify-content: center;
+    display: flex;
+}
+
+.text-link-wrapper {
+    grid-column-gap: 0.5rem;
+    display: flex;
+    text-decoration: none;
+    list-style: none;
+}
+
+.text-link {
+    font-size: 1.5rem;
+    line-height: 1;
+    transition: all .775s;
+    margin-top: 15px;
+    color: black;
+
+}
+
+.button.is-link.is-icon {
+    grid-column-gap: 0.5rem;
+    grid-row-gap: 0.5rem;
+    text-align: left;
+    justify-content: flex-start;
+}
+
+.button.is-link {
+    color: #f05027;
+    background-color: rgba(0, 0, 0, 0);
+    border-style: none;
+    padding: 0.25rem 0;
+    font-family: Polysans neutral, sans-serif;
+    font-size: 1.75rem;
+    line-height: 1.2;
+    text-decoration: none;
+}
+
+.ecosystem-bg-blur {
+    z-index: -1;
+    height: 70rem;
+    max-width: none;
+    min-width: 100rem;
+    margin-top: -50rem;
+    margin-left: -62rem;
+    position: absolute;
+}
+
+.event-types-content {
+    grid-column-gap: 1.5rem;
+    grid-row-gap: 16px;
+    grid-template-rows: auto;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-auto-columns: 1fr;
+    grid-auto-flow: row;
+    margin-top: 4rem;
+    display: grid;
+}
+
+/* Thses are Styles For Cards */
+
+/* this card is inspired form this - https://georgefrancis.dev/ */
+.card {
+    --background: #fff;
+    --cardShadow: rgba(32, 33, 37, .1);
+    --cardShadowHover: rgba(32, 33, 37, .06);
+    --cardShadowActive: rgba(32, 33, 37, .55);
+    --cardBorder: #dbdce0;
+    --cardBorderActive: #1a73e8;
+    --textColor: #202125;
+    --linkColor: #1967d2;
+    --ratingColor: #faab00;
+}
+
+@media (prefers-color-scheme: dark) {
+    .card {
+        --background: #3c4043;
+        --cardShadow: rgba(0, 0, 0, .28);
+        --cardShadowHover: rgba(0, 0, 0, .16);
+        --cardShadowActive: rgba(0, 0, 0, .55);
+        --cardBorder: #202125;
+        --cardBorderActive: #8ab4f8;
+        --textColor: #e9eaee;
+        --linkColor: #8ab4f8;
+    }
+}
+
+.card {
+    width: 250px;
+    height: 40vh;
+    aspect-ratio: 2/3;
+    background: var(--background);
+    color: var(--textColor);
+    border: 1px solid var(--cardBorder);
+    padding: 25px;
+    box-shadow: 8px 8px 0 var(--cardShadow);
+    transition: box-shadow .5s, transform .5s;
+    border-radius: 8px;
+    display: inline-block;
+}
+
+.card:hover {
+    transform: translate(-2px, -4px);
+    box-shadow: 16px 16px 0 var(--cardShadowHover);
+}
+
+.card:active {
+    transform: translate(-2px, -4px);
+    border: 2px solid var(--cardBorderActive);
+    box-shadow: 4px 4px 0 var(--cardShadowActive);
+}
+
+.card>.icon,
+.card>.title,
+.card>.description {
+    margin-bottom: 0.7em;
+    cursor: default;
+    user-select: none;
+}
+
+.card>.title {
+    margin-top: 1.5em;
+    font-weight: bold;
+}
+
+.card>.description {
+    line-height: 1.5em;
+    min-height: 6em;
+}
+
+.card>.icon {
+    font-size: 3em;
+    margin-bottom: .2em;
+}
+
+.card>.rating {
+    font-size: 1.5em;
+    margin-bottom: 0.8em;
+    color: var(--ratingColor);
+    font-weight: bold;
+    position: relative;
+    width: max-content;
+}
+
+
+
+.card>.link {
+    margin-bottom: 1rem;
+    color: var(--linkColor);
+    font-size: 1.2em;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+/* Optional ~ Link the whole card */
+.card>.link::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.card>.link:after {
+    content: "↗";
+    display: inline-block;
+    margin-left: .3em;
+    transition: transform .3s ease-in-out;
+}
+
+.card:hover>.link:after {
+    transform: translate(.2em, -.2em);
+}
+
+
+/* These Are End for Styles of Cards */
