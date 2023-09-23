@@ -1,5 +1,5 @@
 # BlockCred_Frontend
-This is SIH2023PS . This app is Blockchain Based E-certificate generator and Verifier . This repo contains Frontnend Part of it . 
+This is SIH2023PS . This app is Blockchain Based E-certificate generator and Verifier . This repo contains Frontnend Part of it . we have lost this ps in sih internals i will try to continue this as my personal project 
 
 # Tech Stack Used
 - Vite with ReactJS For Frontend
