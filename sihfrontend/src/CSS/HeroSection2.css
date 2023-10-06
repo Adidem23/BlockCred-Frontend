@@ -115,13 +115,13 @@
 
 @media (prefers-color-scheme: dark) {
     .card {
-        --background: #3c4043;
+        --background: #F7B633;
         --cardShadow: rgba(0, 0, 0, .28);
         --cardShadowHover: rgba(0, 0, 0, .16);
         --cardShadowActive: rgba(0, 0, 0, .55);
         --cardBorder: #202125;
         --cardBorderActive: #8ab4f8;
-        --textColor: #e9eaee;
+        --textColor:#000000;
         --linkColor: #8ab4f8;
     }
 }
