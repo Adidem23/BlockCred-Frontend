@@ -1,24 +1,13 @@
-import { configureStore} from '@reduxjs/toolkit';
-
-const reducer = (state = "Light", action) => {
-
-    switch (action.type) {
-        case 'Dark': {
-            state = "Dark"
-            console.log("state is: " + state)
-            return state
-        }
-
-        case 'Light': {
-            state = "Light"
-            console.log("state is: " + state)
-            return state
-        }
-
-        default: return state
-    }
+import { configureStore, combineReducers } from '@reduxjs/toolkit';
+import Modereducer from './Mode';
+import AccountReducer from './Account';
 
 
-}
+const rootreducers = combineReducers({
+    mode: Modereducer,
+    account: AccountReducer
+})
 
-export const store = configureStore({ reducer: reducer })
+console.log(rootreducers);
+
+export const store = configureStore({ reducer: rootreducers })

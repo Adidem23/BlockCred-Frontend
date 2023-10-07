@@ -1,24 +1,34 @@
 import "../CSS/Navbar.css"
+
 import Logo from '../Images/BlockCred.jpg'
 import Jazzicon, { jsNumberForAddress } from 'react-jazzicon';
 import { useDispatch } from 'react-redux';
 import { useSelector } from "react-redux";
+import { useState } from "react";
 
 
 const Navbar = () => {
 
-    const Dispatch = useDispatch();
+    const Dispatch = useDispatch(state => state.mode);
+    const dispatchAccount = useDispatch(state => state.account);
 
-    const ModeofLight = useSelector(state => state);
+    const ModeofLight = useSelector(state => state.mode);
+    const AccountConnected = useSelector(state => state.account);
 
-    console.log(ModeofLight)
+    const [ClickedForAccount, setClickedForAccount] = useState(false);
+
+    const { ethereum } = window;
+
+    ethereum.on('accountsChanged', async () => {
+        setClickedForAccount(false)
+    })
 
     if (ModeofLight === "Dark") {
         document.body.style.backgroundColor = "#393646";
 
-        const spanelem=document.querySelectorAll('span');
-        spanelem.forEach((spanelem)=>{
-            spanelem.style.color="#F1EFEF"
+        const spanelem = document.querySelectorAll('span');
+        spanelem.forEach((spanelem) => {
+            spanelem.style.color = "#F1EFEF"
         })
 
         const lielemes = document.querySelectorAll("a");
@@ -36,10 +46,10 @@ const Navbar = () => {
     if (ModeofLight === "Light") {
         document.body.style.backgroundColor = "white";
 
-        
-        const spanelem=document.querySelectorAll('span');
-        spanelem.forEach((spanelem)=>{
-            spanelem.style.color="black"
+
+        const spanelem = document.querySelectorAll('span');
+        spanelem.forEach((spanelem) => {
+            spanelem.style.color = "black"
         })
 
 
@@ -60,25 +70,28 @@ const Navbar = () => {
         <nav className="navbar">
 
             <div className="logo">
+
                 <img src={Logo} alt="Logo" />
                 <span className="logo-text" id="l">BlockCred</span>
+
+
             </div>
 
             <ul className="nav-links">
-                <li><a href="#">About</a></li>
                 <li><a href="#">Gallery</a></li>
                 <li><a href="#">Help</a></li>
-                <li ><a href="#"><Jazzicon diameter={20} seed={jsNumberForAddress("")} /></a></li>
-                <li><a href="#">Aditya Suryawanshi</a></li>
+                {!ClickedForAccount && <li><a href="#">Hello!! Stranger</a></li>}
+                {ClickedForAccount && <><li ><a href="#"><Jazzicon diameter={20} seed={jsNumberForAddress(`${AccountConnected}`)} /></a></li>
+                    <li><a href="#" style={{ color: "black" }}>{AccountConnected}</a></li></>}
             </ul>
 
 
 
             <label htmlFor="theme" className="theme">
                 <span className="theme__toggle-wrap">
-                    <input id="theme" className="theme__toggle" type="checkbox" role="switch" name="theme" onChange={e => {
+                    <input id="theme" className="theme__toggle" type="checkbox" name="theme" onChange={e => {
                         if (ModeofLight === "Light") {
-                            Dispatch({ type: 'Dark' })
+                            Dispatch({ type: "Dark" })
                         } else {
                             Dispatch({ type: 'Light' })
                         }
@@ -98,9 +111,9 @@ const Navbar = () => {
                 </span>
             </label>
 
-            <div className="voltage-button">
+            <div className="voltage-button" onClick={(e) => { e.preventDefault(); setClickedForAccount(true) }}>
 
-                <button>Connect</button>
+                <button id="guppy" onClick={e => { dispatchAccount({ type: "Connect" }) }}>{ClickedForAccount ? <p>Connected!!</p> : <p>Connect</p>}</button>
                 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 234.6 61.3" preserveAspectRatio="none">
 
                     <filter id="glow">
