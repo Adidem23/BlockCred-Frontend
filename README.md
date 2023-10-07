@@ -1,5 +1,6 @@
 # BLockcred
-This app is Blockchain Based E-certificate generator and Verifier .
+This app is Blockchain Based E-certificate generator and Verifier . In which there will be organization which will issue certificate to the user
+
 # Tech Stack Used
 - Vite with ReactJS For Frontend
 - Figma For Design
