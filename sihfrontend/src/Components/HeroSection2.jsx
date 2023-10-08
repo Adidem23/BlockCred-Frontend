@@ -11,6 +11,8 @@ const HeroSection2 = () => {
     const [HoveredCards, setHoveredCards] = useState(false);
     const [HoveredHead, setHoveredHead] = useState(false);
     const [CheckAdminState, setCheckAdminState] = useState(false);
+    const [CheckOrganizationState, setCheckOrganizationState] = useState(false);
+    const [CheckUserState, setCheckUserState] = useState(false);
 
     const ModeofLight = useSelector(state => state.mode);
     const AccountConnected = useSelector(state => state.account);
@@ -35,11 +37,11 @@ const HeroSection2 = () => {
 
     const Providers = new ethers.providers.Web3Provider(window.ethereum);
     const Signers = Providers.getSigner();
-    const ContractAddress = "0x164687CA6bD62e40A567fc5C8ed10830f4821512";
+    const ContractAddress = "0x15711b4CD7fc52c5b98905eAa1aADcd21a4A8d33";
     const contractABI = abi.abi;
     const ContractInstance = new ethers.Contract(ContractAddress, contractABI, Signers);
 
-    const Check = async () => {
+    const CheckSuperAdmin = async () => {
         const CheckSuperAdminornot = await ContractInstance.isSuperadmin(AccountConnected);
         if (CheckSuperAdminornot == true) {
             setCheckAdminState(true);
@@ -47,7 +49,28 @@ const HeroSection2 = () => {
             setCheckAdminState(false)
         }
     }
-    Check();
+    CheckSuperAdmin();
+
+    const CheckOrganization = async () => {
+        const CheckOrgi = await ContractInstance.organizationExists(AccountConnected);
+        if (CheckOrgi == true) {
+            setCheckOrganizationState(true);
+        } else {
+            setCheckOrganizationState(false);
+        }
+    }
+    CheckOrganization();
+
+
+    const CheckUserConnected = async () => {
+        const CheckUser = await ContractInstance.userExists(AccountConnected);
+        if (CheckUser == true) {
+            setCheckUserState(true);
+        } else {
+            setCheckUserState(false);
+        }
+    }
+    CheckUserConnected();
 
 
     return (
@@ -60,24 +83,16 @@ const HeroSection2 = () => {
                             <h2 className="heading-style-h1">BlockCred : Online Certificate Generator </h2>
 
 
-                            {!CheckAdminState ? <><div style={{ marginTop: "50px", display: "flex", flexDirection: "row", width: "fit-content", marginLeft: "auto", marginRight: "auto" }}  >
+                            {!CheckAdminState && !CheckOrganizationState && !CheckUserState ? <><div style={{ marginTop: "50px", display: "flex", flexDirection: "row", width: "fit-content", marginLeft: "auto", marginRight: "auto" }}  >
 
                                 <Slide left when={HoveredCards} >
                                     <div className="card" id='card1' onMouseEnter={() => { setHoveredCards(true) }} >
                                         <div className="icon">📃</div>
-                                        <div className="title">All Certificates</div>
+                                        <div className="title">Welcome To our Website</div>
                                         <p className="description">The login functionality is a critical component of any digital platform or application, providing secure access to authorized users.</p>
                                     </div>
                                 </Slide>
-
-                                <Slide right when={HoveredHead}>
-                                    <div className="card" id='card2' style={{ marginLeft: "80px" }} onMouseEnter={() => { setHoveredHead(true) }}>
-                                        <div className="icon">😈</div>
-                                        <div className="title">Request Certificate</div>
-                                        <p className="description">This feature is a valuable functionality within a certificate management or verification system.</p>
-                                    </div>
-                                </Slide>
-                            </div></> : <><div style={{ marginTop: "50px", display: "flex", flexDirection: "row", width: "fit-content", marginLeft: "auto", marginRight: "auto" }}  >
+                            </div></> : CheckAdminState ? <><div style={{ marginTop: "50px", display: "flex", flexDirection: "row", width: "fit-content", marginLeft: "auto", marginRight: "auto" }}  >
 
                                 <Slide left when={HoveredCards} >
                                     <div className="card" id='card1' onMouseEnter={() => { setHoveredCards(true) }} onClick={(e) => { e.preventDefault(); Navigator("/addorgi") }} >
@@ -86,7 +101,51 @@ const HeroSection2 = () => {
                                         <p className="description">The login functionality is a critical component of any digital platform or application, providing secure access to authorized users.</p>
                                     </div>
                                 </Slide>
-                            </div></>}
+                            </div></> : CheckOrganizationState ? <><div style={{ marginTop: "50px", display: "flex", flexDirection: "row", width: "fit-content", marginLeft: "auto", marginRight: "auto" }}  >
+
+                                <Slide left when={HoveredCards} >
+                                    <div className="card" id='card1' onMouseEnter={() => { setHoveredCards(true) }} onClick={(e)=>{e.preventDefault(); Navigator("/checkreq")}}>
+                                        <div className="icon">⚡🐳</div>
+                                        <div className="title">Check Requests</div>
+                                        <p className="description">The login functionality is a critical component of any digital platform or application, providing secure access to authorized users.</p>
+                                    </div>
+                                </Slide>
+
+                                <Slide right when={HoveredHead}>
+                                    <div className="card" id='card2' style={{ marginLeft: "80px" }} onMouseEnter={() => { setHoveredHead(true) }} onClick={(e) => { e.preventDefault(); Navigator("/adduser") }}>
+                                        <div className="icon">👥</div>
+                                        <div className="title">Add Users</div>
+                                        <p className="description">This feature is a valuable functionality within a certificate management or verification system.</p>
+                                    </div>
+                                </Slide>
+                            </div></> : CheckUserState && <>
+                                <div style={{ marginTop: "50px", display: "flex", flexDirection: "row", width: "fit-content", marginLeft: "auto", marginRight: "auto" }}  >
+
+                                    <Slide left when={HoveredCards} >
+                                        <div className="card" id='card1' onMouseEnter={() => { setHoveredCards(true) }} >
+                                            <div className="icon">😶‍🌫️</div>
+                                            <div className="title">All Certificates</div>
+                                            <p className="description">The login functionality is a critical component of any digital platform or application, providing secure access to authorized users.</p>
+                                        </div>
+                                    </Slide>
+
+                                    <Slide right when={HoveredHead}>
+                                        <div className="card" id='card2' style={{ marginLeft: "80px" }} onMouseEnter={() => { setHoveredHead(true) }} onClick={(e) => { e.preventDefault(); Navigator("/request") }}>
+                                            <div className="icon">🥳</div>
+                                            <div className="title">Request Certificates</div>
+                                            <p className="description">This feature is a valuable functionality within a certificate management or verification system.</p>
+                                        </div>
+                                    </Slide>
+
+                                    <Slide top when={HoveredHead}>
+                                        <div className="card" id='card2' style={{ marginLeft: "80px" }} onMouseEnter={() => { setHoveredHead(true) }} onClick={(e) => { e.preventDefault(); Navigator("/reqstats") }}>
+                                            <div className="icon">🫣</div>
+                                            <div className="title">Requested Status</div>
+                                            <p className="description">This feature is a valuable functionality within a certificate management or verification system.</p>
+                                        </div>
+                                    </Slide>
+                                </div>
+                            </>}
                         </div>
                     </div>
 

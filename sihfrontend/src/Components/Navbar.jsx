@@ -1,5 +1,4 @@
 import "../CSS/Navbar.css"
-
 import Logo from '../Images/BlockCred.jpg'
 import Jazzicon, { jsNumberForAddress } from 'react-jazzicon';
 import { useDispatch } from 'react-redux';
